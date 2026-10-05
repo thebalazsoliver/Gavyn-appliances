@@ -1,0 +1,107 @@
+{
+  "downloaded_at": "2026-10-05",
+  "assets_unmodified": true,
+  "all_marks_remain_property_of_respective_owners": true,
+  "assets": [
+    {
+      "brand": "Whirlpool",
+      "file": "whirlpool.svg",
+      "download_url": "https://www.whirlpooldigitalassets.com/content/dam/business-unit/whirlpool/global-assets/logos-whirlpool-brand/web/svg_rgb/Whirlpool_Brand_1C_Black_Web.svg",
+      "source_page": "https://www.whirlpooldigitalassets.com/content/wdl/en/assets/easy-logos.html",
+      "notes": "Black, official brand SVG. Whirlpool Digital Library says all rights reserved and intended for employees or authorized users; related-business use must be appropriate.",
+      "downloaded": true,
+      "size_bytes": 6528,
+      "sha256": "c4e19e14e19949023f945063ffee6361cb5bb3119d75ae492507dc2f6d47ea5a"
+    },
+    {
+      "brand": "KitchenAid",
+      "file": "kitchenaid.svg",
+      "download_url": "https://www.whirlpooldigitalassets.com/content/dam/business-unit/kitchenaid/global-assets/logos-kitchenaid/web/svg_rgb/KitchenAid_Logo_1C_Black_Web.svg",
+      "source_page": "https://www.whirlpooldigitalassets.com/content/wdl/en/assets/easy-logos.html",
+      "notes": "Black, official brand SVG. Same Whirlpool Digital Library authorized-user notice.",
+      "downloaded": true,
+      "size_bytes": 6677,
+      "sha256": "184b1d8bb2869e15d0e4b671d9fbddea3bb69a330382b0cdff952a1a492f8712"
+    },
+    {
+      "brand": "Maytag",
+      "file": "maytag.svg",
+      "download_url": "https://www.whirlpooldigitalassets.com/content/dam/business-unit/maytag/global-assets/logos-maytag/web/svg_rgb/Maytag_Wordmark_1C_Black_Web.svg",
+      "source_page": "https://www.whirlpooldigitalassets.com/content/wdl/en/assets/easy-logos.html",
+      "notes": "Black, official wordmark SVG. Same Whirlpool Digital Library authorized-user notice.",
+      "downloaded": true,
+      "size_bytes": 7678,
+      "sha256": "de60f7ce2953d341d188c2c0a27fa159f87539a6bebb1ecb5e0b1252ed296be3"
+    },
+    {
+      "brand": "GE",
+      "file": "ge.png",
+      "download_url": "https://pressroom.geappliances.com/_gallery/get_file/?file_id=69a5f62a3d6332de6c041399&album_id=",
+      "source_page": "https://pressroom.geappliances.com/file/ge-appliances-logo",
+      "notes": "Official 2026 GE Appliances lockup in blue with GE monogram and a Haier company line; PNG 4256 x 1134. Copyright GE Appliances; no additional license stated on the asset page.",
+      "downloaded": true,
+      "size_bytes": 140576,
+      "sha256": "57ca43e8d9083b77c6effb590c3f5b0a0802a160cec66dcea07cc5a3a4a09ba3"
+    },
+    {
+      "brand": "LG",
+      "file": "lg.png",
+      "download_url": "https://www.lg.com/content/dam/lge/global/our-brand/brand-assets/logo/3_lg_logo_mono_black/LGE_Logo_Mono_Black_RGB.png",
+      "source_page": "https://www.lg.com/global/our-identity/brand-assets/",
+      "notes": "Official mono-black logo PNG download. LG guideline page provides mono-black variant and requires clear space. All rights reserved by LG; no open license stated.",
+      "downloaded": true,
+      "size_bytes": 28533,
+      "sha256": "bbf891d5e93a4d258240224d9d0553dd445ad62c643226de1548f8ee3edb2471"
+    },
+    {
+      "brand": "Samsung",
+      "file": "samsung.svg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Samsung_wordmark.svg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Samsung_wordmark.svg",
+      "notes": "Wikimedia Commons original SVG lists Samsung as author and official Samsung brand-identity URLs as source. Marked public-domain simple textlogo and trademarked; trademark rights remain. Samsung guidelines protect clear space.",
+      "downloaded": true,
+      "size_bytes": 4459,
+      "sha256": "7c1a09ef9076d86b6a0ce37b60dac50f666db4abf016f5dea7ae790b082f2575"
+    },
+    {
+      "brand": "Bosch",
+      "file": "bosch.svg",
+      "download_url": "https://www.bosch-home.com/marketing-app/_next/static/media/bosch.777c3df3.svg",
+      "source_page": "https://www.bosch-home.com/us/",
+      "notes": "Unaltered current official Bosch Home header SVG with Bosch symbol plus red wordmark; no open license stated.",
+      "downloaded": true,
+      "size_bytes": 3998,
+      "sha256": "140645032639a414dfb38e9592fcc4a5e6d4ac118338043ba40d0e0e34c12a56"
+    },
+    {
+      "brand": "Frigidaire",
+      "file": "frigidaire.svg",
+      "download_url": "https://mediablob.electrolux.com/media/Frigidaire_Media/Logo/elements-logos-color.svg",
+      "source_page": "https://www.frigidaire.com/",
+      "notes": "Unaltered official site header logo SVG, black wordmark and red triangle; no open license stated.",
+      "downloaded": true,
+      "size_bytes": 6876,
+      "sha256": "75e6f9de89fd06b19d8d05a68ec5f2b661871f4af9293e8d4ec00a20ef57fb4f"
+    },
+    {
+      "brand": "Electrolux",
+      "file": "electrolux.svg",
+      "download_url": "https://mediablob.electrolux.com/media/ElectroluxMedia/Home/Logo-Electrolux.svg",
+      "source_page": "https://www.electrolux.com/en-us/",
+      "notes": "Unaltered official Electrolux site logo SVG in navy; no open license stated.",
+      "downloaded": true,
+      "size_bytes": 3281,
+      "sha256": "9a640db466aed985bf1fc6b38599db2fe3070650280b6ea0a88c2dfd84c01323"
+    },
+    {
+      "brand": "Miele",
+      "file": "miele.svg",
+      "download_url": "https://developer.miele.com/docs/third-party-api/logo_package.zip",
+      "source_page": "https://developer.miele.com/docs/downloads",
+      "notes": "Exact Miele_Logo_M_Red_sRGB.svg from official logo ZIP. Official guide is for Miele 3rd Party API license use; says red seal is standard and greyscale is exceptional. Preserve clear space and seal proportions.",
+      "downloaded": true,
+      "size_bytes": 2264,
+      "sha256": "ac3ccc9b224eed7573b3aaab1020161b0424d02e858bfbc8bb90be619b8c7ecb"
+    }
+  ]
+}

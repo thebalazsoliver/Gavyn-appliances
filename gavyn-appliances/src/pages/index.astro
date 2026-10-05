@@ -1,0 +1,532 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import ContactForm from '../components/ContactForm.astro';
+import LogoLoop from '../components/LogoLoop';
+import { business, brands, navigation, services, process, faqs } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<BaseLayout>
+  <div class="utility-bar">
+    <div class="container utility-inner">
+      <span>
+        <Icon name="pin" size={15} /> Serving the GTA & Barrie area
+      </span>
+      <span>
+        <Icon name="shield" size={15} /> G2 certified gas appliance technician
+      </span>
+    </div>
+  </div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#" aria-label="Gavyn Appliances home">
+        <img src="/images/gavyn-logo.jpg" width="62" height="62" alt="" />
+        <span>
+          GAVYN<span>APPLIANCES</span>
+        </span>
+      </a>
+      <nav id="main-nav" aria-label="Main navigation">
+        <ul>
+          {navigation.map((item) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))}
+          <li class="nav-mobile-contact">
+            <a href="#contact">Contact</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a class="header-phone" href={business.phoneHref}>
+          <Icon name="phone" size={19} />
+          <span>{business.phone}</span>
+        </a>
+        <a class="button button-primary header-cta" href="#contact">
+          Request service
+        </a>
+        <button
+          class="menu-toggle"
+          aria-label="Open navigation"
+          aria-controls="main-nav"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" aria-labelledby="hero-title">
+      <img
+        class="hero-image"
+        src="/images/kitchen-hero.webp"
+        width="1800"
+        height="1200"
+        alt="A modern home kitchen with stainless steel refrigerator and cooking appliances"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <div class="hero-shade"></div>
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <span class="eyebrow hero-eyebrow">LOCAL SERVICE. PERSONAL CARE.</span>
+          <h1 id="hero-title">
+            A working home.
+            <br />A little{' '}
+            <em>
+              peace
+              <br class="desktop-break" /> of mind.
+            </em>
+          </h1>
+          <p>
+            Appliance repairs, installation and maintenance, with a real person you can count on.
+          </p>
+          <div class="hero-buttons">
+            <a class="button button-primary" href="#contact">
+              Request a service visit
+            </a>
+            <a class="button button-outline" href={business.phoneHref}>
+              <Icon name="phone" size={19} />
+              {business.phone}
+            </a>
+          </div>
+          <div class="hero-cert">
+            <Icon name="shield" size={20} />
+            <span>G2 certified gas appliance technician</span>
+          </div>
+        </div>
+        <div class="hero-rate">
+          <span class="rate-symbol">
+            <Icon name="wrench" size={24} />
+          </span>
+          <div>
+            <span class="rate-label">SERVICE CALLS FROM</span>
+            <p>
+              <strong>$70</strong>
+              <span>CAD + HST</span>
+            </p>
+          </div>
+          <span class="rate-note">
+            Let’s get your home
+            <br />
+            back to normal.
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <div class="service-strip">
+      <div class="container strip-inner">
+        <span>
+          <Icon name="wrench" size={21} />
+          Repairs
+        </span>
+        <span>
+          <Icon name="check" size={21} />
+          Installations
+        </span>
+        <span>
+          <Icon name="sparkle" size={21} />
+          Maintenance & cleaning
+        </span>
+        <a href="#areas">
+          <Icon name="pin" size={21} />
+          GTA & Barrie
+        </a>
+      </div>
+    </div>
+
+    <section id="services" class="section services-section">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">FROM THE KITCHEN TO THE UTILITY ROOM</span>
+            <h2>
+              Whatever needs attention,
+              <br />
+              we’re here to help.
+            </h2>
+          </div>
+        </div>
+        <div class="service-grid">
+          {services.map((service) => (
+            <article class="service-card">
+              <div class="service-card-top">
+                <span class="service-icon">
+                  <Icon name={service.icon} size={33} />
+                </span>
+              </div>
+              <span class="service-tag">{service.tag}</span>
+              <h3>{service.name}</h3>
+              <p>{service.description}</p>
+              <ul>
+                {service.items.map((item) => (
+                  <li>
+                    <Icon name="check" size={16} />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <a class="service-link" href="#contact" data-appliance={service.name}>
+                Request service
+                <Icon name="plus" size={19} />
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="brands" class="brands-section" aria-labelledby="brands-title">
+      <div class="container brands-heading">
+        <span class="eyebrow">FAMILIAR BRANDS. KNOWLEDGEABLE SERVICE.</span>
+        <h2 id="brands-title">The brands in your home.</h2>
+      </div>
+      <div class="brand-loop-wrap">
+        <LogoLoop
+          logos={[...brands]}
+          client:visible
+          speed={55}
+          direction="left"
+          logoHeight={36}
+          gap={70}
+          hoverSpeed={0}
+          fadeOut
+          fadeOutColor="#ffffff"
+          ariaLabel="Appliance brands we work with"
+        />
+      </div>
+    </section>
+
+    <section id="about" class="section about-section">
+      <div class="container about-grid">
+        <div class="about-image-wrap">
+          <img
+            src="/images/appliance-care.webp"
+            width="1100"
+            height="1200"
+            alt="Home appliance maintenance and care"
+            loading="lazy"
+          />
+          <div class="certification-card">
+            <span class="cert-icon">
+              <Icon name="shield" size={40} />
+            </span>
+            <div>
+              <strong>G2 certified</strong>
+              <span>Gas appliance technician</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-copy">
+          <span class="eyebrow">INDEPENDENT. APPROACHABLE. HANDS-ON.</span>
+          <h2>
+            Good service starts
+            <br />
+            with a real person.
+          </h2>
+          <p class="about-intro">Your local appliance service company.</p>
+          <p>
+            With formal training in electronics, appliance repair and installation, we bring
+            practical know-how and personal attention to the work your home needs.
+          </p>
+          <p>
+            From a fridge that won’t cool to a gas appliance installation, you can get in touch
+            directly, explain what’s happening and discuss the next step.
+          </p>
+          <div class="about-values">
+            <div>
+              <Icon name="chat" size={25} />
+              <strong>Direct communication</strong>
+              <p>Talk about your appliance with the person doing the work.</p>
+            </div>
+            <div>
+              <Icon name="wrench" size={25} />
+              <strong>Care for the whole home</strong>
+              <p>Repairs, installs and regular maintenance under one roof.</p>
+            </div>
+          </div>
+          <a href="#contact" class="button button-dark">
+            Get in touch with us
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="section pricing-section">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">A CLEAR PLACE TO START</span>
+            <h2>
+              Simple starting prices.
+              <br />
+              No guesswork.
+            </h2>
+          </div>
+        </div>
+        <div class="pricing-grid">
+          <article class="price-card">
+            <div class="price-top">
+              <span class="price-icon">
+                <Icon name="wrench" size={30} />
+              </span>
+              <span class="price-category">REPAIR & DIAGNOSIS</span>
+            </div>
+            <h3>Service call</h3>
+            <p>Start with a visit to assess what’s happening with your appliance.</p>
+            <div class="price-amount">
+              <span>From</span>
+              <strong>$70</strong>
+              <span>CAD + HST</span>
+            </div>
+            <a href="#contact" class="button button-dark">
+              Request a service call
+            </a>
+          </article>
+          <article class="price-card price-card-featured">
+            <div class="price-top">
+              <span class="price-icon">
+                <Icon name="sparkle" size={30} />
+              </span>
+              <span class="price-category">A LITTLE CARE GOES A LONG WAY</span>
+            </div>
+            <h3>Maintenance & cleaning</h3>
+            <p>Give the appliances you rely on some regular attention and care.</p>
+            <div class="price-amount">
+              <span>From</span>
+              <strong>$100</strong>
+              <span>CAD + HST</span>
+            </div>
+            <a href="#contact" class="button button-primary">
+              Arrange maintenance
+            </a>
+          </article>
+        </div>
+        <p class="pricing-note">
+          Starting prices in Canadian dollars. HST is additional. Final pricing depends on the
+          appliance and work required. Contact us to discuss repair and installation costs.
+        </p>
+      </div>
+    </section>
+
+    <section class="section process-section">
+      <div class="container">
+        <div class="center-heading">
+          <span class="eyebrow">LET’S MAKE THIS EASY</span>
+          <h2>From first call to next step.</h2>
+        </div>
+        <ol class="process-list">
+          {process.map((step, index) => (
+            <li>
+              <span class="process-step">0{index + 1}</span>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section id="areas" class="areas-section">
+      <div class="container areas-grid">
+        <div>
+          <span class="eyebrow">LOCAL TO YOUR HOME</span>
+          <h2>
+            Across the GTA.
+            <br />
+            Up to Barrie.
+          </h2>
+          <p>
+            Appliance service for homes throughout the Greater Toronto Area and the Barrie area.
+          </p>
+          <p class="area-check">
+            Share your city or postal code and we’ll confirm availability for your address.
+          </p>
+          <a class="button button-primary" href="#contact">
+            Check service availability
+          </a>
+        </div>
+        <div class="area-cards">
+          <div class="area-card">
+            <Icon name="pin" size={28} />
+            <span class="area-card-kicker">01 / GREATER TORONTO AREA</span>
+            <h3>Toronto & the GTA</h3>
+            <p>Household appliance repairs, installation and maintenance.</p>
+          </div>
+          <div class="area-card">
+            <Icon name="pin" size={28} />
+            <span class="area-card-kicker">02 / BARRIE AREA</span>
+            <h3>Barrie & surroundings</h3>
+            <p>The same personal service, a little further north.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq-section">
+      <div class="container faq-grid">
+        <div>
+          <span class="eyebrow">A FEW THINGS YOU MIGHT BE WONDERING</span>
+          <h2>
+            Good questions.
+            <br />
+            Straight answers.
+          </h2>
+          <p>
+            Something else on your mind?
+            <br />
+            <a href={business.phoneHref}>Give us a call.</a>
+          </p>
+        </div>
+        <div class="faq-list">
+          {faqs.map((faq) => (
+            <details class="faq-item">
+              <summary>
+                {faq.question}
+                <span class="faq-plus">
+                  <Icon name="plus" size={21} />
+                </span>
+              </summary>
+              <div class="faq-answer">
+                <p>{faq.answer}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+      <div class="container contact-grid">
+        <div class="contact-copy">
+          <span class="eyebrow">YOUR HOME’S NEXT STEP STARTS HERE</span>
+          <h2>
+            Let’s get things
+            <br />
+            <em>working again.</em>
+          </h2>
+          <p>
+            A repair, a new installation or a little preventative care. Tell us what your home
+            needs.
+          </p>
+          <div class="contact-links">
+            <a href={business.phoneHref}>
+              <span class="contact-icon">
+                <Icon name="phone" size={24} />
+              </span>
+              <span>
+                <small>GIVE US A CALL</small>
+                <strong>{business.phone}</strong>
+              </span>
+            </a>
+            <a href={`mailto:${business.email}`}>
+              <span class="contact-icon">
+                <Icon name="mail" size={24} />
+              </span>
+              <span>
+                <small>SEND AN EMAIL</small>
+                <strong>{business.email}</strong>
+              </span>
+            </a>
+            <div>
+              <span class="contact-icon">
+                <Icon name="pin" size={24} />
+              </span>
+              <span>
+                <small>SERVICE AREA</small>
+                <strong>Greater Toronto Area & Barrie</strong>
+              </span>
+            </div>
+          </div>
+          <div class="contact-social">
+            <span>Find us online</span>
+            <a href={business.facebook} target="_blank" rel="noopener noreferrer">
+              <Icon name="facebook" size={20} />
+              Facebook
+            </a>
+            <a href={business.instagram} target="_blank" rel="noopener noreferrer">
+              <Icon name="instagram" size={20} />
+              Instagram
+            </a>
+          </div>
+          <div class="contact-cert">
+            <Icon name="shield" size={24} />
+            <span>G2 Certified Gas Appliance Technician</span>
+          </div>
+        </div>
+        <ContactForm />
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <a class="brand footer-brand" href="#">
+        <img src="/images/gavyn-logo.jpg" width="62" height="62" alt="" />
+        <span>
+          GAVYN<span>APPLIANCES</span>
+        </span>
+      </a>
+      <p>
+        Repairs. Installs. Maintenance.
+        <br />
+        For the home you count on.
+      </p>
+      <a href={business.phoneHref}>
+        <Icon name="phone" size={19} />
+        {business.phone}
+      </a>
+    </div>
+    <div class="container footer-bottom">
+      <span>© {year} Gavyn Appliances. All rights reserved.</span>
+      <span>Serving the Greater Toronto Area & Barrie.</span>
+    </div>
+  </footer>
+  <a class="mobile-call" href={business.phoneHref} aria-label="Call us">
+    <Icon name="phone" size={22} />
+  </a>
+</BaseLayout>
+
+<script>
+  import { initializeFaqAccordion } from '../scripts/faq';
+  initializeFaqAccordion();
+
+  const menu = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const nav = document.querySelector<HTMLElement>('#main-nav');
+  function closeMenu() {
+    menu?.setAttribute('aria-expanded', 'false');
+    menu?.setAttribute('aria-label', 'Open navigation');
+    nav?.classList.remove('is-open');
+  }
+  menu?.addEventListener('click', () => {
+    const open = menu.getAttribute('aria-expanded') !== 'true';
+    menu.setAttribute('aria-expanded', String(open));
+    menu.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    nav?.classList.toggle('is-open', open);
+  });
+  nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+  document.addEventListener('click', (event) => {
+    if (!(event.target instanceof Node)) return;
+    if (!nav?.contains(event.target) && !menu?.contains(event.target)) closeMenu();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && menu?.getAttribute('aria-expanded') === 'true') {
+      closeMenu();
+      menu.focus();
+    }
+  });
+  const screen = window.matchMedia('(min-width: 1120px)');
+  screen.addEventListener('change', closeMenu);
+  document.querySelectorAll<HTMLAnchorElement>('[data-appliance]').forEach((link) =>
+    link.addEventListener('click', () => {
+      const select = document.querySelector<HTMLSelectElement>('#appliance-choice');
+      if (select) select.value = link.dataset.appliance ?? '';
+    }),
+  );
+</script>
