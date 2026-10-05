@@ -1,0 +1,107 @@
+---
+import { business, services } from '../data/site';
+import Icon from './Icon.astro';
+---
+
+<form
+  id="service-request"
+  class="contact-form"
+  action={business.formEndpoint.replace('/ajax/', '/')}
+  method="POST"
+>
+  <input type="hidden" name="_subject" value="New Gavyn Appliances service request" />
+  <input type="hidden" name="_template" value="table" />
+  <input type="hidden" name="_captcha" value="false" />
+  <div class="honeypot" aria-hidden="true">
+    <label>
+      Leave this field empty
+      <input name="_honey" tabindex="-1" autocomplete="off" />
+    </label>
+  </div>
+  <div class="form-heading">
+    <span class="eyebrow">LET’S GET IT SORTED</span>
+    <h3>Request a service visit</h3>
+    <p>Tell us a little about your appliance. We’ll follow up to discuss your request.</p>
+  </div>
+  <div class="form-grid">
+    <label>
+      Full name <span aria-hidden="true">*</span>
+      <input name="name" autocomplete="name" placeholder="Your name" required maxlength="100" />
+    </label>
+    <label>
+      Email address <span aria-hidden="true">*</span>
+      <input
+        name="email"
+        type="email"
+        autocomplete="email"
+        placeholder="you@example.com"
+        required
+        maxlength="254"
+      />
+    </label>
+    <label>
+      Phone number
+      <input
+        name="phone"
+        type="tel"
+        autocomplete="tel"
+        placeholder="(905) 000-0000"
+        maxlength="40"
+      />
+    </label>
+    <label>
+      City or postal code <span aria-hidden="true">*</span>
+      <input
+        name="location"
+        autocomplete="postal-code"
+        placeholder="Where are you located?"
+        required
+        maxlength="100"
+      />
+    </label>
+    <label class="full-width">
+      What needs attention? <span aria-hidden="true">*</span>
+      <select name="appliance" id="appliance-choice" required>
+        <option value="" disabled selected>
+          Select your appliance
+        </option>
+        {services.map((service) => (
+          <option value={service.name}>{service.name}</option>
+        ))}
+        <option value="Other household appliance">Other household appliance</option>
+      </select>
+    </label>
+    <label class="full-width">
+      How can we help? <span aria-hidden="true">*</span>
+      <textarea
+        name="message"
+        rows="4"
+        placeholder="Describe the issue or the installation you need. Add the brand and model if you have them."
+        required
+        minlength="10"
+        maxlength="3000"
+      ></textarea>
+    </label>
+  </div>
+  <p class="form-privacy">
+    Your details will only be used to respond to your request. Submitting this form does not confirm
+    an appointment.
+  </p>
+  <button class="button button-primary form-submit" type="submit">
+    <Icon name="mail" size={19} />
+    <span>Send service request</span>
+  </button>
+  <p id="form-status" class="form-status" role="status" aria-live="polite" tabindex="-1" hidden></p>
+  <details class="privacy-details">
+    <summary>How your information is used</summary>
+    <p>
+      Your name, contact details, location and message are sent to our company through FormSubmit so
+      we can respond. Avoid sending payment details or other sensitive information. For questions
+      about your information, email <a href={`mailto:${business.email}`}>{business.email}</a>.
+    </p>
+  </details>
+</form>
+<script>
+  import { initializeContactForm } from '../scripts/contact';
+  initializeContactForm();
+</script>
