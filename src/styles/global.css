@@ -811,17 +811,19 @@ h1 em {
   text-align: center;
 }
 .process-list {
+  --process-gap: 62px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 62px;
+  gap: var(--process-gap);
   margin-top: 52px;
   position: relative;
+  text-align: center;
 }
 .process-list::before {
   position: absolute;
   top: 25px;
-  left: 25px;
-  right: calc(33.33% - 44px);
+  left: calc(16.666667% - var(--process-gap) / 3);
+  right: calc(16.666667% - var(--process-gap) / 3);
   height: 1px;
   background: var(--line);
   content: '';
@@ -837,7 +839,7 @@ h1 em {
   font-size: 1rem;
   font-weight: 800;
   border-radius: 50%;
-  margin-bottom: 23px;
+  margin: 0 auto 23px;
   box-shadow: 0 0 0 9px #fff;
 }
 .process-list h3 {
@@ -851,6 +853,7 @@ h1 em {
   line-height: 1.9;
   color: var(--muted);
   max-width: 310px;
+  margin-inline: auto;
 }
 
 /* Local coverage. */
@@ -1412,7 +1415,7 @@ h1 em {
     font-size: 0.9rem;
   }
   .process-list {
-    gap: 32px;
+    --process-gap: 32px;
   }
 }
 @media (max-width: 900px) {
@@ -1874,6 +1877,7 @@ h1 em {
     grid-template-columns: 1fr;
     gap: 28px;
     margin-top: 32px;
+    text-align: left;
   }
   .process-list::before {
     left: 23px;
@@ -1895,6 +1899,7 @@ h1 em {
     width: 46px;
     height: 46px;
     font-size: 0.875rem;
+    margin: 0;
   }
   .process-list h3 {
     font-size: 1rem;

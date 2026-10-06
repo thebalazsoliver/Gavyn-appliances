@@ -2,10 +2,10 @@ export const business = {
   name: 'Gavyn Appliances',
   phone: '(905) 505-4287',
   phoneHref: 'tel:+19055054287',
-  email: 'gavyn.robinson@gmail.com',
+  email: 'gavynappliances@gmail.com',
   facebook: 'https://www.facebook.com/Gavynappliances',
   instagram: 'https://www.instagram.com/gavynshvac/',
-  formEndpoint: 'https://formsubmit.co/ajax/gavyn.robinson@gmail.com',
+  formEndpoint: 'https://formsubmit.co/ajax/gavynappliances@gmail.com',
   area: 'Greater Toronto Area & Barrie',
 } as const;
 
@@ -71,6 +71,15 @@ export const services = [
       'Keep your home comfortable through the Canadian seasons with furnace repairs, installation and regular maintenance.',
     items: ['Furnace repairs', 'Installation', 'Maintenance & cleaning'],
   },
+  {
+    id: 'air-conditioning',
+    icon: 'air-conditioning',
+    name: 'Air conditioning',
+    tag: 'KEEP YOUR HOME COOL',
+    description:
+      'Keep your home cool with air conditioning repairs, installation and regular maintenance.',
+    items: ['Air conditioning repairs', 'Installation', 'Maintenance & cleaning'],
+  },
 ] as const;
 
 export const brands = [
@@ -105,7 +114,7 @@ export const faqs = [
   {
     question: 'Which appliances do you work on?',
     answer:
-      'We work on household appliances, including fridges, freezers, stoves, ovens, washers, dryers and dishwashers, as well as water heaters and furnaces. Repairs, installation and maintenance are available.',
+      'We work on household appliances, including fridges, freezers, stoves, ovens, washers, dryers and dishwashers, as well as water heaters, furnaces and air conditioning. Repairs, installation and maintenance are available.',
   },
   {
     question: 'Where do you provide service?',
@@ -115,7 +124,7 @@ export const faqs = [
   {
     question: 'How much does a service visit cost?',
     answer:
-      'Service calls start at $70 CAD + HST. Maintenance and cleaning start at $100 CAD + HST. These are starting prices; contact us to discuss the work your appliance needs and the applicable cost.',
+      'Service calls start at $80 CAD + HST. Maintenance and cleaning start at $100 CAD + HST. These are starting prices; contact us to discuss the work your appliance needs and the applicable cost.',
   },
   {
     question: 'Can you work on gas appliances?',

@@ -33,8 +33,7 @@ export function initializeContactForm() {
       const providerMessage = typeof result.message === 'string' ? result.message : '';
       if (/activat|confirm.*email|check.*inbox/i.test(providerMessage)) {
         status.dataset.state = 'error';
-        status.textContent =
-          'Online requests are awaiting email setup. Please call (905) 505-4287 or email gavyn.robinson@gmail.com to arrange service.';
+        status.textContent = `Online requests are awaiting email setup. Please call ${business.phone} or email ${business.email} to arrange service.`;
       } else {
         status.dataset.state = 'success';
         status.textContent =
@@ -43,8 +42,7 @@ export function initializeContactForm() {
       }
     } catch {
       status.dataset.state = 'error';
-      status.textContent =
-        'We couldn’t confirm that your request was submitted. Your details are still here. Please try again, call (905) 505-4287 or email gavyn.robinson@gmail.com.';
+      status.textContent = `We couldn’t confirm that your request was submitted. Your details are still here. Please try again, call ${business.phone} or email ${business.email}.`;
     } finally {
       window.clearTimeout(timeoutId);
       submitting = false;
