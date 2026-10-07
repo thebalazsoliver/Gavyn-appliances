@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { afterEach, mock, test } from 'node:test';
 import { onRequest } from '../functions/api/contact.ts';
+import { createServiceRequestEmail } from '../src/emails/service-request.ts';
 
 const valid = {
   name: 'Test Visitor',
@@ -57,6 +58,8 @@ test('sends a valid request with a fixed sender, recipient and subject', async (
   assert.deepEqual(payload.to, [{ email: 'balazsoliver.hu@gmail.com' }]);
   assert.deepEqual(payload.replyTo, { name: valid.name, email: valid.email });
   assert.equal(payload.subject, 'New Gavyn Appliances service request');
+  assert.equal(typeof payload.htmlContent, 'string');
+  assert.match(payload.htmlContent, /Reply to customer/);
   for (const value of Object.values(valid).filter(Boolean)) {
     assert.ok(payload.textContent.includes(value));
   }
@@ -222,4 +225,40 @@ test('a native submission with missing configuration shows an error page', async
   assert.equal(response.status, 503);
   assert.match(await response.text(), /Request not submitted/);
   assert.equal(send.mock.callCount(), 0);
+});
+
+test('HTML emails escape customer input and keep message line breaks and plain text', async () => {
+  const send = acceptEmail();
+  const details = {
+    ...valid,
+    name: 'Jordan <img src="x" onerror="alert(1)"> & Parker',
+    location: 'Toronto <b>West</b>',
+    message: 'First line & details.\r\n<script>alert("test")</script>\nLast line.',
+  };
+  const response = await onRequest({ request: request(details), env: configured });
+  assert.equal(response.status, 200);
+  const payload = JSON.parse(send.mock.calls[0].arguments[1].body);
+  assert.ok(!payload.htmlContent.includes('<img'));
+  assert.ok(!payload.htmlContent.includes('<script'));
+  assert.ok(payload.htmlContent.includes('&lt;img'));
+  assert.ok(payload.htmlContent.includes('Toronto &lt;b&gt;West&lt;/b&gt;'));
+  assert.ok(payload.htmlContent.includes('First line &amp; details.<br>&lt;script&gt;'));
+  assert.ok(payload.htmlContent.includes('&lt;/script&gt;<br>Last line.'));
+  assert.ok(payload.textContent.includes(details.message));
+  assert.deepEqual(payload.replyTo, { name: details.name, email: details.email });
+});
+
+test('reply links encode addresses without injecting mailto parameters or HTML', () => {
+  const address = 'customer+tag?cc=unwanted@example.com';
+  const email = createServiceRequestEmail({ ...valid, email: address, phone: '' });
+  const links = [...email.htmlContent.matchAll(/href="(mailto:[^"]+)"/g)];
+  assert.equal(links.length, 2);
+  for (const [, href] of links) {
+    const [recipient, query] = href.slice('mailto:'.length).split('?');
+    assert.equal(decodeURIComponent(recipient), address);
+    const params = new URLSearchParams(query);
+    assert.deepEqual([...params.keys()], ['subject']);
+    assert.equal(params.get('subject'), `Re: ${email.subject}`);
+  }
+  assert.ok(email.htmlContent.includes('Not provided'));
 });

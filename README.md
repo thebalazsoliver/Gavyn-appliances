@@ -27,6 +27,7 @@ The production site is in `dist/`. Deploy to Cloudflare Pages with build command
 - `src/styles/global.css`: design tokens, section styles and responsive layouts.
 - `src/components/ContactForm.astro` and `src/scripts/contact.ts`: form markup and submission states.
 - `functions/api/contact.ts`: server-side validation and email delivery through Brevo.
+- `src/emails/service-request.ts`: the branded HTML notification and its plain-text alternative.
 - `src/components/LogoLoop.jsx` and its CSS: the supplied React Bits component, with pause on hover, reduced-motion and hidden-tab handling.
 - `public/`: self-hosted images, fonts, favicon and original manufacturer logos.
 
@@ -56,6 +57,8 @@ If Brevo blocks an unfamiliar Cloudflare IP, inspect **SMTP & API → Authorized
 The server accepts JSON and native URL-encoded form submissions, limits the request size, validates required fields and appliance choices, and checks browser origins. A honeypot provides a basic spam trap. The email recipient and sender come only from server configuration. Brevo errors, missing configuration and timeouts produce an error response; they never produce a successful submission message.
 
 The form prevents duplicate clicks, times out after 20 seconds and retains entered details on an error. The Brevo request times out after 15 seconds. Submitting a form does not confirm an appointment. Native form submission shows a confirmation or error page when JavaScript is disabled.
+
+Service-request notifications include an anthracite and gold HTML email with customer details, the appliance, the message and a reply button. The template uses table layouts and inline styles, keeps a plain-text alternative, escapes submitted content and preserves message line breaks. It does not load external images or fonts.
 
 `npm run dev` previews the static Astro site without the Cloudflare Function. To test the complete form locally, put the secret in an untracked `.dev.vars` file, build the site, and run `npx wrangler pages dev dist`. Automated tests mock Brevo and never send real emails.
 

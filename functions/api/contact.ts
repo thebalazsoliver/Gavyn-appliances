@@ -1,4 +1,5 @@
 import { business, services } from '../../src/data/site.ts';
+import { createServiceRequestEmail } from '../../src/emails/service-request.ts';
 
 interface Env {
   BREVO_API_KEY?: string;
@@ -218,17 +219,7 @@ export async function onRequest({ request, env }: ContactContext): Promise<Respo
           sender: { name: business.name, email: sender },
           to: [{ email: recipient }],
           replyTo: { name, email },
-          subject: 'New Gavyn Appliances service request',
-          textContent: [
-            `Name: ${name}`,
-            `Email: ${email}`,
-            `Phone: ${phone || 'Not provided'}`,
-            `City or postal code: ${location}`,
-            `Appliance: ${appliance}`,
-            '',
-            'Message:',
-            message,
-          ].join('\n'),
+          ...createServiceRequestEmail({ name, email, phone, location, appliance, message }),
         }),
         signal: abort.signal,
       });
