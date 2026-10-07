@@ -12,7 +12,7 @@ interface ContactContext {
   env: Env;
 }
 
-const DEFAULT_EMAIL = 'balazsoliver.hu@gmail.com';
+const DEFAULT_EMAIL = 'gavynappliances@gmail.com';
 const BREVO_ENDPOINT = 'https://api.brevo.com/v3/smtp/email';
 const MAX_BODY_BYTES = 48 * 1024;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
