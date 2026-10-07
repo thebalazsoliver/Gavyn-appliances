@@ -31,7 +31,7 @@ function detailRow(label: string, value: string): string {
 
 export function createServiceRequestEmail(details: ServiceRequestDetails) {
   const subject = 'New Gavyn Appliances service request';
-  const replyHref = `mailto:${encodeURIComponent(details.email)}?subject=${encodeURIComponent(`Re: ${subject}`)}`;
+  const customerMailto = `mailto:${encodeURIComponent(details.email)}`;
   const phoneNumber = details.phone.replace(/[^\d+]/g, '');
   const phone = /^\+?\d{7,15}$/.test(phoneNumber)
     ? `<a href="tel:${phoneNumber}" style="color:#242628;text-decoration:none;">${escapeHtml(details.phone)}</a>`
@@ -39,7 +39,7 @@ export function createServiceRequestEmail(details: ServiceRequestDetails) {
   const rows = [
     detailRow(
       'Email',
-      `<a href="${escapeHtml(replyHref)}" style="color:#765b28;text-decoration:underline;word-break:break-all;">${escapeHtml(details.email)}</a>`,
+      `<a href="${escapeHtml(customerMailto)}" style="color:#765b28;text-decoration:underline;word-break:break-all;">${escapeHtml(details.email)}</a>`,
     ),
     detailRow('Phone', phone),
     detailRow('Location', escapeHtml(details.location)),
@@ -104,11 +104,11 @@ export function createServiceRequestEmail(details: ServiceRequestDetails) {
                 <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:26px;">
                   <tr>
                     <td bgcolor="#d6b677" style="background-color:#d6b677;border-radius:6px;mso-padding-alt:14px 24px;">
-                      <a class="reply-button" href="${escapeHtml(replyHref)}" style="display:inline-block;padding:14px 24px;border:1px solid #d6b677;border-radius:6px;color:#242628;font-size:15px;line-height:20px;font-weight:bold;text-decoration:none;">Reply to customer</a>
+                      <a class="reply-button" href="${escapeHtml(customerMailto)}" style="display:inline-block;padding:14px 24px;border:1px solid #d6b677;border-radius:6px;color:#242628;font-size:15px;line-height:20px;font-weight:bold;text-decoration:none;">Reply to customer</a>
                     </td>
                   </tr>
                 </table>
-                <p style="margin:12px 0 0;color:#72716b;font-size:12px;line-height:20px;">You can also use Reply in your inbox to contact this customer.</p>
+                <p style="margin:12px 0 0;color:#72716b;font-size:12px;line-height:20px;">Opens a new email to the customer.</p>
               </td>
             </tr>
           </table>

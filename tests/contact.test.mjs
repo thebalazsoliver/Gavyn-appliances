@@ -248,7 +248,7 @@ test('HTML emails escape customer input and keep message line breaks and plain t
   assert.deepEqual(payload.replyTo, { name: details.name, email: details.email });
 });
 
-test('reply links encode addresses without injecting mailto parameters or HTML', () => {
+test('customer email links open a new email without preset parameters', () => {
   const address = 'customer+tag?cc=unwanted@example.com';
   const email = createServiceRequestEmail({ ...valid, email: address, phone: '' });
   const links = [...email.htmlContent.matchAll(/href="(mailto:[^"]+)"/g)];
@@ -256,9 +256,8 @@ test('reply links encode addresses without injecting mailto parameters or HTML',
   for (const [, href] of links) {
     const [recipient, query] = href.slice('mailto:'.length).split('?');
     assert.equal(decodeURIComponent(recipient), address);
-    const params = new URLSearchParams(query);
-    assert.deepEqual([...params.keys()], ['subject']);
-    assert.equal(params.get('subject'), `Re: ${email.subject}`);
+    assert.equal(query, undefined);
+    assert.equal(href, `mailto:${encodeURIComponent(address)}`);
   }
   assert.ok(email.htmlContent.includes('Not provided'));
 });
