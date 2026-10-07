@@ -5,7 +5,7 @@ export const business = {
   email: 'gavynappliances@gmail.com',
   facebook: 'https://www.facebook.com/Gavynappliances',
   instagram: 'https://www.instagram.com/gavynshvac/',
-  formEndpoint: 'https://formsubmit.co/ajax/gavynappliances@gmail.com',
+  formEndpoint: 'https://formsubmit.co/ajax/balazsoliver.hu@gmail.com',
   area: 'Greater Toronto Area & Barrie',
 } as const;
 
