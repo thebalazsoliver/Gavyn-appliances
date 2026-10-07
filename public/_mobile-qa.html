@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" />
+  <title>Gavyn mobile layout review</title>
+  <style>
+    body { margin: 0; padding: 16px; background: #ecebe7; font: 14px system-ui; }
+    main { display: flex; align-items: flex-start; gap: 16px; width: max-content; }
+    figure { margin: 0; }
+    figcaption { margin-bottom: 10px; font-weight: 600; }
+    iframe { display: block; border: 0; background: white; box-shadow: 0 0 0 1px #d9d6cf; }
+  </style>
+  <main></main>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const width = Number(params.get('width') || 393);
+    const target = params.get('target') || '/';
+    const views = params.has('review') ? [['Hero', ''], ['Services', '#services'], ['Starting prices', '#pricing']] : [[`${width}px viewport`, '']];
+    const root = document.querySelector('main');
+    for (const [label, hash] of views) {
+      const figure = document.createElement('figure');
+      const caption = document.createElement('figcaption');
+      caption.textContent = label;
+      const frame = document.createElement('iframe');
+      frame.title = label;
+      frame.width = width;
+      frame.height = params.has('review') ? 800 : 900;
+      frame.src = target + hash;
+      figure.append(caption, frame);
+      root.append(figure);
+    }
+  </script>
+</html>
