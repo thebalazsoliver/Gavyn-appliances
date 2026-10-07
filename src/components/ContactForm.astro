@@ -3,15 +3,7 @@ import { business, services } from '../data/site';
 import Icon from './Icon.astro';
 ---
 
-<form
-  id="service-request"
-  class="contact-form"
-  action={business.formEndpoint.replace('/ajax/', '/')}
-  method="POST"
->
-  <input type="hidden" name="_subject" value="New Gavyn Appliances service request" />
-  <input type="hidden" name="_template" value="table" />
-  <input type="hidden" name="_captcha" value="false" />
+<form id="service-request" class="contact-form" action={business.formEndpoint} method="POST">
   <div class="honeypot" aria-hidden="true">
     <label>
       Leave this field empty
@@ -95,9 +87,9 @@ import Icon from './Icon.astro';
   <details class="privacy-details">
     <summary>How your information is used</summary>
     <p>
-      Your name, contact details, location and message are sent to our company through FormSubmit so
-      we can respond. Avoid sending payment details or other sensitive information. For questions
-      about your information, email <a href={`mailto:${business.email}`}>{business.email}</a>.
+      Your name, contact details, location and message are sent to our company through Brevo so we
+      can respond. Avoid sending payment details or other sensitive information. For questions about
+      your information, email <a href={`mailto:${business.email}`}>{business.email}</a>.
     </p>
   </details>
 </form>

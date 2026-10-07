@@ -26,14 +26,12 @@ export function initializeContactForm() {
         body: JSON.stringify(Object.fromEntries(new FormData(form))),
         signal: timeout.signal,
       });
-      const result = await response.json();
-      if (!response.ok || (result.success !== true && result.success !== 'true')) {
-        throw new Error('The form provider did not accept the request.');
-      }
-      const providerMessage = typeof result.message === 'string' ? result.message : '';
-      if (/activat|confirm.*email|check.*inbox/i.test(providerMessage)) {
+      const result: { success?: boolean; message?: string } = await response.json();
+      if (!response.ok || result.success !== true) {
         status.dataset.state = 'error';
-        status.textContent = `Online requests are awaiting email setup. Please call ${business.phone} or email ${business.email} to arrange service.`;
+        status.textContent =
+          result.message ||
+          `We couldn’t submit your request. Your details are still here. Please try again, call ${business.phone} or email ${business.email}.`;
       } else {
         status.dataset.state = 'success';
         status.textContent =

@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview --host 0.0.0.0 --port 4173",
     "check": "astro check",
-    "format": "prettier --write src astro.config.mjs tsconfig.json README.md package.json"
+    "test": "node --experimental-strip-types --test tests/contact.test.mjs",
+    "format": "prettier --write src functions tests astro.config.mjs tsconfig.json README.md package.json"
   },
   "dependencies": {
     "@astrojs/react": "^4.4.0",
