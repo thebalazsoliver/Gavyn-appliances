@@ -76,24 +76,14 @@ import Icon from './Icon.astro';
     </label>
   </div>
   <p class="form-privacy">
-    We use your details to respond and arrange the service you request. Cloudflare processes the
-    form, Brevo delivers it, and Gavyn Robinson reads it in Gmail. See our
-    <a href="/privacy-policy/">Privacy Policy</a>. Submitting does not confirm an appointment.
+    We use your details to respond to your request.
+    <a href="/privacy-policy/">Privacy Policy</a>.
   </p>
   <button class="button button-primary form-submit" type="submit">
     <Icon name="mail" size={19} />
     <span>Send service request</span>
   </button>
   <p id="form-status" class="form-status" role="status" aria-live="polite" tabindex="-1" hidden></p>
-  <details class="privacy-details">
-    <summary>How your information is used</summary>
-    <p>
-      Your name, email, optional phone number, city or postal code, appliance choice and message are
-      used to handle your request. These providers may process information outside Canada. Please
-      avoid payment details or other sensitive information. To ask about access, correction or
-      deletion, email <a href={`mailto:${business.email}`}>{business.email}</a>.
-    </p>
-  </details>
 </form>
 <script>
   import { initializeContactForm } from '../scripts/contact';
