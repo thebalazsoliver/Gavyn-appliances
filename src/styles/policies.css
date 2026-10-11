@@ -1,0 +1,110 @@
+.policy-header {
+  background: var(--ink);
+  color: var(--white);
+}
+.policy-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-block: 22px;
+}
+.policy-back {
+  color: var(--accent);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+.policy-main {
+  max-width: 840px;
+  margin-inline: auto;
+  padding: 72px 24px;
+}
+.policy-intro {
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--line);
+}
+.policy-intro h1 {
+  font-size: clamp(2rem, 6vw, 3.4rem);
+  line-height: 1.15;
+  margin-block: 18px;
+}
+.policy-date {
+  color: var(--muted);
+  font-size: 0.875rem;
+  margin-bottom: 18px;
+}
+.policy-content section {
+  margin-top: 36px;
+}
+.policy-content h2,
+.policy-contact h2 {
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  line-height: 1.4;
+  margin-bottom: 14px;
+}
+.policy-content p + p {
+  margin-top: 16px;
+}
+.policy-content ul {
+  padding-left: 24px;
+  list-style: disc;
+  margin-block: 16px;
+}
+.policy-content li + li {
+  margin-top: 12px;
+}
+.policy-content a,
+.policy-contact a {
+  color: var(--accent-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+.policy-content code {
+  overflow-wrap: anywhere;
+}
+.policy-contact {
+  margin-top: 44px;
+  background: var(--accent-soft);
+  padding: 28px;
+  border-radius: var(--radius);
+}
+.policy-contact a {
+  display: block;
+  width: fit-content;
+  margin-top: 10px;
+}
+.policy-footer {
+  background: #202020;
+  color: var(--on-dark-muted);
+  font-size: 0.875rem;
+}
+.policy-footer > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  padding-block: 28px;
+}
+@media (max-width: 600px) {
+  .policy-header-inner {
+    gap: 16px;
+    padding-block: 18px;
+  }
+  .policy-header .brand img {
+    width: 42px;
+    height: 42px;
+  }
+  .policy-header .brand > span {
+    font-size: 0.9rem;
+  }
+  .policy-back {
+    font-size: 0.75rem;
+  }
+  .policy-main {
+    padding: 40px 20px;
+  }
+  .policy-contact {
+    padding: 22px;
+  }
+}

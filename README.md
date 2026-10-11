@@ -28,6 +28,8 @@ The production site is in `dist/`. Deploy to Cloudflare Pages with build command
 - `src/components/ContactForm.astro` and `src/scripts/contact.ts`: form markup and submission states.
 - `functions/api/contact.ts`: server-side validation and email delivery through Brevo.
 - `src/emails/service-request.ts`: the branded HTML notification and its plain-text alternative.
+- `src/pages/privacy-policy.astro` and `src/pages/cookie-policy.astro`: English privacy notices.
+- `src/layouts/PolicyLayout.astro` and `src/styles/policies.css`: shared legal-page layout and responsive styling.
 - `src/components/LogoLoop.jsx` and its CSS: the supplied React Bits component, with pause on hover, reduced-motion and hidden-tab handling.
 - `public/`: self-hosted images, fonts, favicon and original manufacturer logos.
 
@@ -35,7 +37,7 @@ The production site is in `dist/`. Deploy to Cloudflare Pages with build command
 
 The browser posts to `/api/contact`. A Cloudflare Pages Function validates the request and calls `https://api.brevo.com/v3/smtp/email`. The API key stays server-side and must never be added to `src/data/site.ts`, a public environment variable, or GitHub.
 
-For the first setup, both the sender and recipient default to **`balazsoliver.hu@gmail.com`**, preserving the current form's test recipient. This sender has already been verified in Brevo. The public business email remains `gavynappliances@gmail.com`. Replies to a service-request email go to the visitor's submitted email address.
+Both the sender and recipient default to **`gavynappliances@gmail.com`**, now verified in Brevo. Server environment bindings override those defaults when present. The public business email is also `gavynappliances@gmail.com`. Replies to a service-request email go to the visitor's submitted email address.
 
 1. In Brevo, open **Settings → SMTP & API → API keys & MCP** and generate a normal API key for this website.
 2. In Cloudflare, open **Workers & Pages → Gavyn Appliances project → Settings → Variables and Secrets**. Add the encrypted secret `BREVO_API_KEY` with that key. Configure **Preview** to test the integration branch, and **Production** before enabling it on `main`.
@@ -47,10 +49,10 @@ Cloudflare bindings:
 | Name               | Required              | Value                                                      |
 | ------------------ | --------------------- | ---------------------------------------------------------- |
 | `BREVO_API_KEY`    | Yes, encrypted secret | Your website's Brevo API key                               |
-| `BREVO_FROM_EMAIL` | Optional              | A verified sender; defaults to `balazsoliver.hu@gmail.com` |
-| `BREVO_TO_EMAIL`   | Optional              | The recipient; defaults to `balazsoliver.hu@gmail.com`     |
+| `BREVO_FROM_EMAIL` | Optional              | A verified sender; defaults to `gavynappliances@gmail.com` |
+| `BREVO_TO_EMAIL`   | Optional              | The recipient; defaults to `gavynappliances@gmail.com`     |
 
-To deliver requests to the business later, set `BREVO_TO_EMAIL` to `gavynappliances@gmail.com` and redeploy. Changing `business.email` updates the displayed contact address; it does not change these server-side delivery settings.
+If an existing binding still names the old test mailbox, update it and redeploy. Changing `business.email` updates the displayed contact address; it does not change these server-side delivery settings.
 
 If Brevo blocks an unfamiliar Cloudflare IP, inspect **SMTP & API → Authorized IPs** and the Brevo security notification for this integration. Review the matching request before approving that IP.
 
@@ -61,6 +63,19 @@ The form prevents duplicate clicks, times out after 20 seconds and retains enter
 Service-request notifications include an anthracite and gold HTML email with customer details, the appliance, the message and a reply button. The template uses table layouts and inline styles, keeps a plain-text alternative, escapes submitted content and preserves message line breaks. It does not load external images or fonts.
 
 `npm run dev` previews the static Astro site without the Cloudflare Function. To test the complete form locally, put the secret in an untracked `.dev.vars` file, build the site, and run `npx wrangler pages dev dist`. Automated tests mock Brevo and never send real emails.
+
+## Privacy operations
+
+The policies name Gavyn Robinson as the individual operator, not an incorporated company. Form data passes through Cloudflare and Brevo to Gmail; the application has no customer database. The current source has no visitor cookies, local/session storage, Google Analytics, Meta Pixel or embedded social feeds. A live DOM review on October 11, 2026 found no Cloudflare Web Analytics beacon. This review does not inspect HttpOnly cookies or prove that Cloudflare will never issue security cookies. The cookie policy therefore describes security cookies conditionally. No decorative consent banner was added.
+
+The published retention rule is purpose-based and requires real operator action:
+
+- Review inquiry emails periodically and delete records that are no longer necessary; this is not automated by the website. Include relevant copies and exported records, and understand provider backup/log deletion processes.
+- Identify and document any longer periods justified by service follow-up, warranty, accounting or legal requirements. Do not retain all inquiries indefinitely.
+- Handle access, correction, withdrawal and deletion requests, verify identity proportionately, and observe applicable response deadlines and exceptions.
+- Review mailbox access, provider terms and account security. Avoid storing sensitive information unnecessarily.
+- Re-audit and update both policies when enabling analytics, Cloudflare features, embeds, advertising or new providers. Implement any required consent controls before optional tracking loads.
+- Obtain Canadian legal review before relying on these notices as a compliance assessment. A policy page does not itself establish compliance.
 
 ## Content and assets
 

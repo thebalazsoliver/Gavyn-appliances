@@ -1266,6 +1266,7 @@ h1 em {
   border-top: 1px solid #ffffff1a;
   min-height: 64px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
@@ -1274,6 +1275,20 @@ h1 em {
 }
 .mobile-call {
   display: none;
+}
+.footer-policy-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  padding-block: 8px;
+}
+.footer-policy-links a,
+.form-privacy a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.footer-policy-links a:hover {
+  color: var(--accent);
 }
 
 @media (min-width: 1500px) {

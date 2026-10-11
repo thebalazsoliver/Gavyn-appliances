@@ -76,8 +76,9 @@ import Icon from './Icon.astro';
     </label>
   </div>
   <p class="form-privacy">
-    Your details will only be used to respond to your request. Submitting this form does not confirm
-    an appointment.
+    We use your details to respond and arrange the service you request. Cloudflare processes the
+    form, Brevo delivers it, and Gavyn Robinson reads it in Gmail. See our
+    <a href="/privacy-policy/">Privacy Policy</a>. Submitting does not confirm an appointment.
   </p>
   <button class="button button-primary form-submit" type="submit">
     <Icon name="mail" size={19} />
@@ -87,9 +88,10 @@ import Icon from './Icon.astro';
   <details class="privacy-details">
     <summary>How your information is used</summary>
     <p>
-      Your name, contact details, location and message are sent to our company through Brevo so we
-      can respond. Avoid sending payment details or other sensitive information. For questions about
-      your information, email <a href={`mailto:${business.email}`}>{business.email}</a>.
+      Your name, email, optional phone number, city or postal code, appliance choice and message are
+      used to handle your request. These providers may process information outside Canada. Please
+      avoid payment details or other sensitive information. To ask about access, correction or
+      deletion, email <a href={`mailto:${business.email}`}>{business.email}</a>.
     </p>
   </details>
 </form>

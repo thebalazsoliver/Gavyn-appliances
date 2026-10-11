@@ -53,9 +53,9 @@ test('sends a valid request with a fixed sender, recipient and subject', async (
   assert.ok(options.signal instanceof AbortSignal);
   assert.deepEqual(payload.sender, {
     name: 'Gavyn Appliances',
-    email: 'balazsoliver.hu@gmail.com',
+    email: 'gavynappliances@gmail.com',
   });
-  assert.deepEqual(payload.to, [{ email: 'balazsoliver.hu@gmail.com' }]);
+  assert.deepEqual(payload.to, [{ email: 'gavynappliances@gmail.com' }]);
   assert.deepEqual(payload.replyTo, { name: valid.name, email: valid.email });
   assert.equal(payload.subject, 'New Gavyn Appliances service request');
   assert.equal(typeof payload.htmlContent, 'string');

@@ -1,0 +1,59 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { business } from '../data/site';
+import '../styles/policies.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+---
+
+<BaseLayout title={`${title} | Gavyn Appliances`} description={description}>
+  <header class="policy-header">
+    <div class="container policy-header-inner">
+      <a class="brand" href="/" aria-label="Gavyn Appliances home">
+        <img src="/images/gavyn-logo.jpg" width="58" height="58" alt="" />
+        <span>
+          GAVYN<span>APPLIANCES</span>
+        </span>
+      </a>
+      <a class="policy-back" href="/">
+        Back to home
+      </a>
+    </div>
+  </header>
+  <main id="main-content" class="policy-main">
+    <div class="policy-intro">
+      <span class="eyebrow">YOUR INFORMATION. CLEARLY EXPLAINED.</span>
+      <h1>{title}</h1>
+      <p class="policy-date">
+        Effective date: <time datetime="2026-10-11">October 11, 2026</time>
+      </p>
+      <p>{description}</p>
+    </div>
+    <article class="policy-content" aria-label={title}>
+      <slot />
+    </article>
+    <aside class="policy-contact" aria-label="Privacy contact">
+      <h2>A question about your information?</h2>
+      <p>Contact Gavyn Robinson, the person responsible for privacy at Gavyn Appliances.</p>
+      <a href={`mailto:${business.email}`}>{business.email}</a>
+      <a href={business.phoneHref}>{business.phone}</a>
+    </aside>
+  </main>
+  <footer class="policy-footer">
+    <div class="container">
+      <span>© {new Date().getFullYear()} Gavyn Appliances.</span>
+      <nav class="footer-policy-links" aria-label="Legal information">
+        <a href="/privacy-policy/" aria-current={title === 'Privacy Policy' ? 'page' : undefined}>
+          Privacy Policy
+        </a>
+        <a href="/cookie-policy/" aria-current={title === 'Cookie Policy' ? 'page' : undefined}>
+          Cookie Policy
+        </a>
+      </nav>
+    </div>
+  </footer>
+</BaseLayout>
